@@ -4,103 +4,334 @@
     <meta charset="UTF-8">
     <title>About Me | Potlako Ledwaba</title>
     <style>
-        /* 60–30–10 Color Rule
-           60% Primary: Deep Blue (#0F4C81) – background
-           30% Secondary: Light Gray (#F5F5F5) – content surface
-           10% Accent: Vibrant Orange (#DD4124) – highlights & actions
-        */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
         body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #0F4C81; /* Primary */
+            font-family: "Poppins", "Segoe UI", sans-serif;
+            background: linear-gradient(135deg, #0F4C81 0%, #1a5fa0 50%, #0a3a66 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated background orbs */
+        body::before {
+            content: '';
+            position: fixed;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(221, 65, 36, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            top: -100px;
+            left: -100px;
+            animation: float 20s infinite ease-in-out;
+            pointer-events: none;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(221, 65, 36, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            bottom: -50px;
+            right: -50px;
+            animation: float 25s infinite ease-in-out reverse;
+            pointer-events: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) translateX(0px); }
+            25% { transform: translateY(20px) translateX(15px); }
+            50% { transform: translateY(40px) translateX(0px); }
+            75% { transform: translateY(20px) translateX(-15px); }
         }
 
         .container {
-            background-color: #F5F5F5; /* Secondary */
-            padding: 40px 45px;
-            max-width: 850px;
-            border-radius: 14px;
-            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+            background: linear-gradient(135deg, #F5F5F5 0%, #ffffff 100%);
+            padding: 60px 50px;
+            max-width: 900px;
+            border-radius: 20px;
+            box-shadow: 
+                0 25px 60px rgba(0, 0, 0, 0.3),
+                0 0 40px rgba(221, 65, 36, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(221, 65, 36, 0.1);
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Chess-inspired accent border */
+        .container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #DD4124 0%, #DD4124 50%, #0F4C81 50%, #0F4C81 100%);
+            background-size: 20px 100%;
+            animation: chessBoardSlide 2s linear infinite;
+            border-radius: 20px 20px 0 0;
+        }
+
+        @keyframes chessBoardSlide {
+            0% { background-position: 0 0; }
+            100% { background-position: 20px 0; }
         }
 
         h1 {
             margin-top: 0;
-            font-size: 2.4rem;
+            margin-bottom: 8px;
+            font-size: 3rem;
+            font-weight: 700;
             color: #0F4C81;
+            position: relative;
+            display: inline-block;
+            animation: textGlow 2.5s ease-in-out infinite;
+        }
+
+        @keyframes textGlow {
+            0%, 100% { 
+                text-shadow: 0 0 0 rgba(221, 65, 36, 0.5);
+                letter-spacing: 0;
+            }
+            50% { 
+                text-shadow: 0 0 20px rgba(221, 65, 36, 0.6);
+                letter-spacing: 1px;
+            }
+        }
+
+        h1::after {
+            content: '♟';
+            margin-left: 12px;
+            animation: rotate 3s linear infinite;
+            display: inline-block;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotateY(0deg) rotateZ(0deg); }
+            100% { transform: rotateY(360deg) rotateZ(5deg); }
         }
 
         h2 {
-            margin: 8px 0 20px;
-            font-size: 1.4rem;
-            font-weight: 500;
-            color: #333333;
+            margin: 8px 0 24px;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #DD4124;
+            position: relative;
+            padding-bottom: 12px;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(90deg, #DD4124, #0F4C81);
+            animation: expandWidth 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+
+        @keyframes expandWidth {
+            to { width: 100%; }
         }
 
         p {
-            line-height: 1.7;
-            font-size: 1.05rem;
-            color: #444444;
-            margin-bottom: 16px;
+            line-height: 1.85;
+            font-size: 1.08rem;
+            color: #333;
+            margin-bottom: 20px;
+            animation: fadeInUp 0.8s ease-out backwards;
+        }
+
+        p:nth-child(3) { animation-delay: 0.1s; }
+        p:nth-child(4) { animation-delay: 0.2s; }
+        p:nth-child(5) { animation-delay: 0.3s; }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .highlight {
-            color: #DD4124; /* Accent */
-            font-weight: 600;
+            color: #DD4124;
+            font-weight: 700;
+            position: relative;
+            background: linear-gradient(120deg, #DD4124, #DD4124);
+            background-size: 100% 3px;
+            background-position: 0 100%;
+            background-repeat: no-repeat;
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+            animation: highlightPulse 2s ease-in-out infinite;
+        }
+
+        .highlight:hover {
+            background-size: 100% 100%;
+        }
+
+        @keyframes highlightPulse {
+            0%, 100% { text-shadow: 0 0 0 rgba(221, 65, 36, 0); }
+            50% { text-shadow: 0 0 10px rgba(221, 65, 36, 0.4); }
         }
 
         .meta {
-            margin-top: 22px;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px dashed rgba(221, 65, 36, 0.3);
             font-size: 0.95rem;
-            color: #555555;
+            color: #666;
+            font-weight: 500;
+            animation: slideIn 0.6s ease-out 0.4s backwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
         }
 
         a {
             display: inline-block;
-            margin-top: 30px;
+            margin-top: 40px;
             text-decoration: none;
-            background-color: #DD4124; /* Accent */
+            background: linear-gradient(135deg, #DD4124 0%, #c03920 100%);
             color: #FFFFFF;
-            padding: 12px 22px;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: background-color 0.2s ease, transform 0.2s ease;
+            padding: 15px 32px;
+            border-radius: 12px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            letter-spacing: 0.5px;
+            position: relative;
+            overflow: hidden;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 8px 20px rgba(221, 65, 36, 0.3);
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            animation: buttonBounce 0.6s ease-out 0.5s backwards;
+        }
+
+        @keyframes buttonBounce {
+            from {
+                opacity: 0;
+                transform: scale(0.8) translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        a::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
         }
 
         a:hover {
-            background-color: #c03920;
-            transform: translateY(-2px);
+            transform: translateY(-4px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(221, 65, 36, 0.5);
+            letter-spacing: 1px;
+        }
+
+        a:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        a:active {
+            transform: translateY(-2px) scale(0.98);
+        }
+
+        /* Subtle anime-style decorative elements */
+        .shine {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shine::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Hello, I’m Potlako Ledwaba</h1>
-        <h2>Computer Science & Information Systems Graduate</h2>
-
+    <div class="container shine">
+        <h1>Hello, I'm Potlako</h1>
+        <h2>Computer Science & Information Systems Architect</h2>
         <p>
             I am a <span class="highlight">Computer Science and Information Systems graduate</span>
             with a strong interest in solving real-world problems through thoughtful and well-designed
             software solutions. I enjoy turning complex ideas into practical, user-friendly systems.
         </p>
-
         <p>
             My primary focus is on <span class="highlight">frontend and web application development</span>,
             where I build modern, responsive, and accessible interfaces using contemporary web technologies.
             I am comfortable working independently and taking full ownership of projects from concept
             to deployment.
         </p>
-
         <p>
             I value continuous learning, discipline, and clarity in both code and design.
             I approach software development as a craft—constantly refining, improving,
             and striving to build systems that are reliable, intuitive, and impactful.
         </p>
-
+        <div class="meta">
+            ✦ Always leveling up • Chess strategies applied to code architecture • Anime-inspired design philosophy
+        </div>
+        <a href="#projects">View My Work</a>
     </div>
 </body>
 </html>
