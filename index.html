@@ -1,12 +1,106 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>About Me</title>
+    <meta charset="UTF-8">
+    <title>About Me | Potlako Ledwaba</title>
+    <style>
+        /* 60–30–10 Color Rule
+           60% Primary: Deep Blue (#0F4C81) – background
+           30% Secondary: Light Gray (#F5F5F5) – content surface
+           10% Accent: Vibrant Orange (#DD4124) – highlights & actions
+        */
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0F4C81; /* Primary */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background-color: #F5F5F5; /* Secondary */
+            padding: 40px 45px;
+            max-width: 850px;
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25);
+        }
+
+        h1 {
+            margin-top: 0;
+            font-size: 2.4rem;
+            color: #0F4C81;
+        }
+
+        h2 {
+            margin: 8px 0 20px;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: #333333;
+        }
+
+        p {
+            line-height: 1.7;
+            font-size: 1.05rem;
+            color: #444444;
+            margin-bottom: 16px;
+        }
+
+        .highlight {
+            color: #DD4124; /* Accent */
+            font-weight: 600;
+        }
+
+        .meta {
+            margin-top: 22px;
+            font-size: 0.95rem;
+            color: #555555;
+        }
+
+        a {
+            display: inline-block;
+            margin-top: 30px;
+            text-decoration: none;
+            background-color: #DD4124; /* Accent */
+            color: #FFFFFF;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+        }
+
+        a:hover {
+            background-color: #c03920;
+            transform: translateY(-2px);
+        }
+    </style>
 </head>
 <body>
-    <h1>Hello world, I am 2556165</h1>
-    <p>A 3rd year computer science student</p>
-    <br>
-    <a href="2556165-lab2.html">Lab 2: Semantic HTML Fundamentals</a>
+    <div class="container">
+        <h1>Hello, I’m Potlako Ledwaba</h1>
+        <h2>Computer Science & Information Systems Graduate</h2>
+
+        <p>
+            I am a <span class="highlight">Computer Science and Information Systems graduate</span>
+            with a strong interest in solving real-world problems through thoughtful and well-designed
+            software solutions. I enjoy turning complex ideas into practical, user-friendly systems.
+        </p>
+
+        <p>
+            My primary focus is on <span class="highlight">frontend and web application development</span>,
+            where I build modern, responsive, and accessible interfaces using contemporary web technologies.
+            I am comfortable working independently and taking full ownership of projects from concept
+            to deployment.
+        </p>
+
+        <p>
+            I value continuous learning, discipline, and clarity in both code and design.
+            I approach software development as a craft—constantly refining, improving,
+            and striving to build systems that are reliable, intuitive, and impactful.
+        </p>
+
+    </div>
 </body>
 </html>
