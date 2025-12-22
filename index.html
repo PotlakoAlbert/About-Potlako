@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <title>About Me | Potlako Ledwaba</title>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
 
         * {
             margin: 0;
@@ -14,135 +14,250 @@
 
         body {
             font-family: "Poppins", "Segoe UI", sans-serif;
-            background: linear-gradient(135deg, #0F4C81 0%, #1a5fa0 50%, #0a3a66 100%);
+            background: linear-gradient(135deg, #000814 0%, #001d3d 50%, #003566 100%);
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
             overflow-x: hidden;
             position: relative;
+            color: #f8f9fa;
         }
 
-        /* Animated background orbs */
-        body::before {
-            content: '';
+        /* One Piece Sea Waves Animation */
+        .sea-waves {
             position: fixed;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(221, 65, 36, 0.15) 0%, transparent 70%);
-            border-radius: 50%;
-            top: -100px;
-            left: -100px;
-            animation: float 20s infinite ease-in-out;
-            pointer-events: none;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: linear-gradient(transparent, rgba(0, 86, 179, 0.3));
+            z-index: 0;
+            animation: waves 15s linear infinite;
         }
 
-        body::after {
+        .sea-waves::before {
             content: '';
-            position: fixed;
-            width: 300px;
-            height: 300px;
-            background: radial-gradient(circle, rgba(221, 65, 36, 0.1) 0%, transparent 70%);
-            border-radius: 50%;
-            bottom: -50px;
-            right: -50px;
-            animation: float 25s infinite ease-in-out reverse;
-            pointer-events: none;
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" fill="%230086B3"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" opacity=".25"/></svg>');
+            animation: waveMove 20s linear infinite;
         }
 
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) translateX(0px); }
-            25% { transform: translateY(20px) translateX(15px); }
-            50% { transform: translateY(40px) translateX(0px); }
-            75% { transform: translateY(20px) translateX(-15px); }
+        @keyframes waves {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes waveMove {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Black Clover Grimoire Pages */
+        .grimoire-pages {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(255, 215, 0, 0.05) 2px,
+                    rgba(255, 215, 0, 0.05) 4px
+                );
+            pointer-events: none;
+            z-index: 0;
+            animation: pageTurn 60s infinite linear;
+        }
+
+        @keyframes pageTurn {
+            0% { opacity: 0.3; transform: perspective(1000px) rotateY(0deg); }
+            50% { opacity: 0.5; transform: perspective(1000px) rotateY(180deg); }
+            100% { opacity: 0.3; transform: perspective(1000px) rotateY(360deg); }
+        }
+
+        /* Chess Board Grid Overlay */
+        .chess-grid {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+            z-index: 0;
+            animation: gridPulse 8s ease-in-out infinite;
+        }
+
+        @keyframes gridPulse {
+            0%, 100% { opacity: 0.1; }
+            50% { opacity: 0.2; }
         }
 
         .container {
-            background: linear-gradient(135deg, #F5F5F5 0%, #ffffff 100%);
+            background: linear-gradient(135deg, 
+                rgba(15, 76, 129, 0.95) 0%, 
+                rgba(26, 95, 160, 0.95) 50%, 
+                rgba(10, 58, 102, 0.95) 100%);
             padding: 60px 50px;
             max-width: 900px;
             border-radius: 20px;
             box-shadow: 
-                0 25px 60px rgba(0, 0, 0, 0.3),
-                0 0 40px rgba(221, 65, 36, 0.2),
-                inset 0 1px 0 rgba(255, 255, 255, 0.5);
+                0 25px 60px rgba(0, 0, 0, 0.5),
+                0 0 60px rgba(221, 65, 36, 0.3),
+                0 0 120px rgba(255, 215, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
             position: relative;
-            z-index: 1;
-            border: 2px solid rgba(221, 65, 36, 0.1);
-            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 2;
+            border: 3px solid transparent;
+            animation: slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1),
+                     borderGlow 4s ease-in-out infinite;
+            backdrop-filter: blur(10px);
+        }
+
+        @keyframes borderGlow {
+            0%, 100% { 
+                border-color: rgba(221, 65, 36, 0.3);
+                box-shadow: 0 0 30px rgba(221, 65, 36, 0.3), 
+                           inset 0 0 30px rgba(221, 65, 36, 0.1);
+            }
+            50% { 
+                border-color: rgba(255, 215, 0, 0.5);
+                box-shadow: 0 0 50px rgba(255, 215, 0, 0.4), 
+                           inset 0 0 50px rgba(255, 215, 0, 0.2);
+            }
         }
 
         @keyframes slideUp {
             from {
                 opacity: 0;
-                transform: translateY(40px);
+                transform: translateY(40px) scale(0.95);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) scale(1);
             }
         }
 
-        /* Chess-inspired accent border */
+        /* Black Clover Grimoire-inspired border */
         .container::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
             right: 0;
-            height: 4px;
-            background: linear-gradient(90deg, #DD4124 0%, #DD4124 50%, #0F4C81 50%, #0F4C81 100%);
-            background-size: 20px 100%;
-            animation: chessBoardSlide 2s linear infinite;
+            height: 6px;
+            background: linear-gradient(90deg, 
+                #DD4124 0%, 
+                #FFD700 25%, 
+                #0F4C81 50%, 
+                #FFD700 75%, 
+                #DD4124 100%);
+            background-size: 200% 100%;
+            animation: grimoireFlow 3s linear infinite;
             border-radius: 20px 20px 0 0;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.5));
         }
 
-        @keyframes chessBoardSlide {
-            0% { background-position: 0 0; }
-            100% { background-position: 20px 0; }
+        @keyframes grimoireFlow {
+            0% { background-position: 200% 0; }
+            100% { background-position: -200% 0; }
         }
 
         h1 {
             margin-top: 0;
             margin-bottom: 8px;
-            font-size: 3rem;
-            font-weight: 700;
-            color: #0F4C81;
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #FFD700;
             position: relative;
             display: inline-block;
-            animation: textGlow 2.5s ease-in-out infinite;
+            animation: textGlow 2.5s ease-in-out infinite,
+                     astaFloat 4s ease-in-out infinite;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+            background: linear-gradient(45deg, #FFD700, #FFA500);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @keyframes astaFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-1deg); }
+            75% { transform: translateY(5px) rotate(1deg); }
         }
 
         @keyframes textGlow {
             0%, 100% { 
-                text-shadow: 0 0 0 rgba(221, 65, 36, 0.5);
-                letter-spacing: 0;
+                text-shadow: 0 0 20px rgba(255, 215, 0, 0.7),
+                           0 0 40px rgba(221, 65, 36, 0.5);
             }
             50% { 
-                text-shadow: 0 0 20px rgba(221, 65, 36, 0.6);
-                letter-spacing: 1px;
+                text-shadow: 0 0 30px rgba(255, 215, 0, 1),
+                           0 0 60px rgba(221, 65, 36, 0.7),
+                           0 0 90px rgba(15, 76, 129, 0.5);
             }
+        }
+
+        /* One Piece Jolly Roger Symbol */
+        h1::before {
+            content: '☠';
+            position: absolute;
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 2rem;
+            animation: pirateSwing 5s ease-in-out infinite;
+        }
+
+        @keyframes pirateSwing {
+            0%, 100% { transform: translateY(-50%) rotate(-15deg); }
+            50% { transform: translateY(-50%) rotate(15deg); }
         }
 
         h1::after {
-            content: '♟';
-            margin-left: 12px;
-            animation: rotate 3s linear infinite;
+            content: '♔';
+            margin-left: 15px;
+            animation: kingMove 4s ease-in-out infinite;
             display: inline-block;
+            filter: drop-shadow(0 0 10px rgba(255, 215, 0, 0.8));
         }
 
-        @keyframes rotate {
-            0% { transform: rotateY(0deg) rotateZ(0deg); }
-            100% { transform: rotateY(360deg) rotateZ(5deg); }
+        @keyframes kingMove {
+            0%, 100% { 
+                transform: rotateY(0deg) scale(1);
+                opacity: 1;
+            }
+            25% { 
+                transform: rotateY(90deg) scale(1.2);
+                opacity: 0.7;
+            }
+            50% { 
+                transform: rotateY(180deg) scale(1);
+                opacity: 1;
+            }
+            75% { 
+                transform: rotateY(270deg) scale(1.2);
+                opacity: 0.7;
+            }
         }
 
         h2 {
             margin: 8px 0 24px;
-            font-size: 1.5rem;
+            font-size: 1.6rem;
             font-weight: 600;
-            color: #DD4124;
+            color: #4cc9f0;
             position: relative;
             padding-bottom: 12px;
+            text-shadow: 0 0 15px rgba(76, 201, 240, 0.5);
         }
 
         h2::after {
@@ -152,8 +267,14 @@
             left: 0;
             width: 0;
             height: 3px;
-            background: linear-gradient(90deg, #DD4124, #0F4C81);
-            animation: expandWidth 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+            background: linear-gradient(90deg, #4cc9f0, #FFD700, #DD4124);
+            animation: expandWidth 1.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards,
+                     hakiFlow 3s linear infinite;
+        }
+
+        @keyframes hakiFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
         }
 
         @keyframes expandWidth {
@@ -162,10 +283,11 @@
 
         p {
             line-height: 1.85;
-            font-size: 1.08rem;
-            color: #333;
+            font-size: 1.1rem;
+            color: #e9ecef;
             margin-bottom: 20px;
             animation: fadeInUp 0.8s ease-out backwards;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
         p:nth-child(3) { animation-delay: 0.1s; }
@@ -175,54 +297,99 @@
         @keyframes fadeInUp {
             from {
                 opacity: 0;
-                transform: translateY(20px);
+                transform: translateY(20px) rotateX(10deg);
             }
             to {
                 opacity: 1;
-                transform: translateY(0);
+                transform: translateY(0) rotateX(0);
             }
         }
 
         .highlight {
-            color: #DD4124;
+            color: #FFD700;
             font-weight: 700;
             position: relative;
-            background: linear-gradient(120deg, #DD4124, #DD4124);
-            background-size: 100% 3px;
-            background-position: 0 100%;
-            background-repeat: no-repeat;
-            padding-bottom: 2px;
+            background: linear-gradient(120deg, transparent, rgba(255, 215, 0, 0.2), transparent);
+            background-size: 200% 100%;
+            padding: 2px 6px;
+            border-radius: 4px;
             transition: all 0.3s ease;
-            animation: highlightPulse 2s ease-in-out infinite;
+            animation: highlightPulse 3s ease-in-out infinite,
+                     manaGlow 4s linear infinite;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
         }
 
-        .highlight:hover {
-            background-size: 100% 100%;
+        @keyframes manaGlow {
+            0% { 
+                background-position: 200% 0;
+                box-shadow: 0 0 5px rgba(255, 215, 0, 0.3);
+            }
+            100% { 
+                background-position: -200% 0;
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.6);
+            }
         }
 
         @keyframes highlightPulse {
-            0%, 100% { text-shadow: 0 0 0 rgba(221, 65, 36, 0); }
-            50% { text-shadow: 0 0 10px rgba(221, 65, 36, 0.4); }
+            0%, 100% { 
+                transform: scale(1);
+                border-color: rgba(255, 215, 0, 0.3);
+            }
+            50% { 
+                transform: scale(1.02);
+                border-color: rgba(221, 65, 36, 0.6);
+            }
         }
 
         .meta {
             margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px dashed rgba(221, 65, 36, 0.3);
+            padding: 20px;
+            border: 2px solid rgba(255, 215, 0, 0.2);
+            border-radius: 10px;
             font-size: 0.95rem;
-            color: #666;
+            color: #adb5bd;
             font-weight: 500;
-            animation: slideIn 0.6s ease-out 0.4s backwards;
+            animation: slideIn 0.6s ease-out 0.4s backwards,
+                     metaGlow 6s ease-in-out infinite;
+            background: rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes metaGlow {
+            0%, 100% { 
+                border-color: rgba(255, 215, 0, 0.2);
+                box-shadow: inset 0 0 20px rgba(255, 215, 0, 0.1);
+            }
+            50% { 
+                border-color: rgba(76, 201, 240, 0.3);
+                box-shadow: inset 0 0 30px rgba(76, 201, 240, 0.2);
+            }
+        }
+
+        .meta::before {
+            content: '✦';
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: starSpin 4s linear infinite;
+        }
+
+        @keyframes starSpin {
+            from { transform: translateY(-50%) rotate(0deg); }
+            to { transform: translateY(-50%) rotate(360deg); }
         }
 
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: translateX(-20px);
+                transform: translateX(-30px) scale(0.9);
             }
             to {
                 opacity: 1;
-                transform: translateX(0);
+                transform: translateX(0) scale(1);
             }
         }
 
@@ -230,30 +397,45 @@
             display: inline-block;
             margin-top: 40px;
             text-decoration: none;
-            background: linear-gradient(135deg, #DD4124 0%, #c03920 100%);
-            color: #FFFFFF;
-            padding: 15px 32px;
+            background: linear-gradient(135deg, 
+                #DD4124 0%, 
+                #FFD700 25%, 
+                #DD4124 50%, 
+                #4cc9f0 75%, 
+                #DD4124 100%);
+            background-size: 300% 100%;
+            color: #000814;
+            padding: 16px 36px;
             border-radius: 12px;
-            font-weight: 700;
-            font-size: 1.05rem;
-            letter-spacing: 0.5px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            letter-spacing: 1px;
             position: relative;
             overflow: hidden;
-            border: none;
+            border: 2px solid #FFD700;
             cursor: pointer;
-            box-shadow: 0 8px 20px rgba(221, 65, 36, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4),
+                       0 0 20px rgba(255, 215, 0, 0.4);
             transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-            animation: buttonBounce 0.6s ease-out 0.5s backwards;
+            animation: buttonBounce 0.6s ease-out 0.5s backwards,
+                     buttonFlow 4s linear infinite;
+            text-transform: uppercase;
+            text-shadow: 0 1px 2px rgba(255, 255, 255, 0.5);
+        }
+
+        @keyframes buttonFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
         @keyframes buttonBounce {
             from {
                 opacity: 0;
-                transform: scale(0.8) translateY(20px);
+                transform: scale(0.8) translateY(30px) rotateX(90deg);
             }
             to {
                 opacity: 1;
-                transform: scale(1) translateY(0);
+                transform: scale(1) translateY(0) rotateX(0);
             }
         }
 
@@ -264,52 +446,135 @@
             left: 50%;
             width: 0;
             height: 0;
-            background: rgba(255, 255, 255, 0.3);
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4) 0%, transparent 70%);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             transition: width 0.6s, height 0.6s;
         }
 
+        a::after {
+            content: '⚓';
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            animation: anchorBob 2s ease-in-out infinite;
+        }
+
+        @keyframes anchorBob {
+            0%, 100% { transform: translateY(-50%) rotate(0deg); }
+            25% { transform: translateY(-55%) rotate(-10deg); }
+            75% { transform: translateY(-45%) rotate(10deg); }
+        }
+
         a:hover {
-            transform: translateY(-4px) scale(1.05);
-            box-shadow: 0 15px 40px rgba(221, 65, 36, 0.5);
-            letter-spacing: 1px;
+            transform: translateY(-6px) scale(1.05) rotate(1deg);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6),
+                       0 0 40px rgba(255, 215, 0, 0.6),
+                       0 0 80px rgba(221, 65, 36, 0.4);
+            letter-spacing: 2px;
         }
 
         a:hover::before {
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
         }
 
         a:active {
-            transform: translateY(-2px) scale(0.98);
+            transform: translateY(-3px) scale(0.98);
         }
 
-        /* Subtle anime-style decorative elements */
-        .shine {
-            position: relative;
-            overflow: hidden;
-        }
-
-        .shine::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
+        /* Devil Fruit Particles */
+        .fruit-particles {
+            position: fixed;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-            animation: shine 3s infinite;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        @keyframes shine {
-            0% { left: -100%; }
-            100% { left: 100%; }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #FFD700, #DD4124);
+            border-radius: 50%;
+            filter: blur(1px);
+            animation: floatParticle 15s infinite linear;
+        }
+
+        @keyframes floatParticle {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* Chess Pieces Decoration */
+        .chess-piece {
+            position: fixed;
+            font-size: 3rem;
+            opacity: 0.1;
+            z-index: 1;
+            animation: chessFloat 20s infinite linear;
+        }
+
+        .piece-1 { top: 10%; left: 10%; animation-delay: 0s; }
+        .piece-2 { top: 20%; right: 15%; animation-delay: 5s; }
+        .piece-3 { bottom: 30%; left: 20%; animation-delay: 10s; }
+        .piece-4 { bottom: 15%; right: 25%; animation-delay: 15s; }
+
+        @keyframes chessFloat {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% {
+                transform: translateY(-50px) rotate(90deg);
+                opacity: 0.2;
+            }
+            50% {
+                transform: translateY(-100px) rotate(180deg);
+                opacity: 0.1;
+            }
+            75% {
+                transform: translateY(-50px) rotate(270deg);
+                opacity: 0.05;
+            }
+            100% {
+                transform: translateY(0) rotate(360deg);
+                opacity: 0.1;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container shine">
+    <!-- Background Elements -->
+    <div class="grimoire-pages"></div>
+    <div class="chess-grid"></div>
+    <div class="sea-waves"></div>
+    
+    <!-- Chess Pieces -->
+    <div class="chess-piece piece-1">♛</div>
+    <div class="chess-piece piece-2">♜</div>
+    <div class="chess-piece piece-3">♞</div>
+    <div class="chess-piece piece-4">♝</div>
+    
+    <!-- Devil Fruit Particles -->
+    <div class="fruit-particles" id="particles"></div>
+    
+    <!-- Main Content -->
+    <div class="container">
         <h1>Hello, I'm Potlako</h1>
         <h2>Computer Science & Information Systems Architect</h2>
         <p>
@@ -329,9 +594,42 @@
             and striving to build systems that are reliable, intuitive, and impactful.
         </p>
         <div class="meta">
-            ✦ Always leveling up • Chess strategies applied to code architecture • Anime-inspired design philosophy
+            Always leveling up • Chess strategies applied to code architecture • Anime-inspired design philosophy
         </div>
         <a href="#projects">View My Work</a>
     </div>
+
+    <script>
+        // Create devil fruit particles
+        const particlesContainer = document.getElementById('particles');
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.classList.add('particle');
+            particle.style.left = `${Math.random() * 100}vw`;
+            particle.style.animationDelay = `${Math.random() * 15}s`;
+            particle.style.animationDuration = `${15 + Math.random() * 10}s`;
+            particle.style.width = particle.style.height = `${2 + Math.random() * 4}px`;
+            particle.style.background = `radial-gradient(circle, 
+                ${Math.random() > 0.5 ? '#FFD700' : '#DD4124'}, 
+                ${Math.random() > 0.5 ? '#4cc9f0' : '#0F4C81'})`;
+            particlesContainer.appendChild(particle);
+        }
+
+        // Add interactive hover effects
+        document.querySelectorAll('.highlight').forEach(hl => {
+            hl.addEventListener('mouseenter', function() {
+                this.style.animation = 'manaGlow 1s linear infinite, highlightPulse 1s ease-in-out infinite';
+            });
+            hl.addEventListener('mouseleave', function() {
+                this.style.animation = 'manaGlow 4s linear infinite, highlightPulse 3s ease-in-out infinite';
+            });
+        });
+
+        // Add container hover effect
+        const container = document.querySelector('.container');
+        container.addEventListener('mouseenter', () => {
+            container.style.animation = 'slideUp 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), borderGlow 2s ease-in-out infinite';
+        });
+    </script>
 </body>
 </html>
